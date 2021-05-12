@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+    <h1> admin login is here </h1>
+    <form action="{{ path('security_login') }}" method="post">
+        <div class="mb-5">
+            <label for="_username" class="form-label">email</label>
+            <input type="text" class="form-control" id="_username" name="_username" style="width:300px;" placeholder="email" required>
+        </div>
+        <div class="mb-5">
+            <label for="password" class="form-label">password</label>
+            <input type="password" class="form-control" id="password" name="_password" style="width:300px;" placeholder="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary"> connect </button>
+    </form>
+{% endblock %}

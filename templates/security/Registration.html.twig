@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SecurityController!{% endblock %}
+
+{% block body %}
+    <h1> ajouter admin </h1>
+    {{ form_start(form) }}
+    {{ form_row(form.Email,{'attr' :{'class' :'form-control'}})}}
+    {{ form_row(form.Login,{'attr' :{'class' :'form-control'}}) }}
+    {{ form_row(form.password,{'attr' :{'class' :'form-control'}} )}}
+    <button type="submit" class="btn btn-primary"> connect </button>
+    {{ form_end(form) }}
+{% endblock %}

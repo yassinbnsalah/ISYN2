@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ClientController!{% endblock %}
+
+{% block body %}
+    <h1><center>liste des clients</center> </h1>
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">cin</th>
+            <th scope="col">nom&prenom</th>
+            <th scope="col">mail</th>
+            <th scope="col">tel</th>
+            <th scope="col">password</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for client in clients %}
+        <tr>
+            <th scope="row">{{ client.getId() }}</th>
+            <td>{{ client.getCin() }}</td>
+            <td>{{ client.getNomPrenom() }}</td>
+            <td>{{ client.getMail() }}</td>
+            <td>{{ client.getTel() }}</td>
+            <td>{{ client.getPassword() }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <center> <a href="/Client/ajouter" class="btn btn-success"> ajouter client</a></center>
+{% endblock %}
