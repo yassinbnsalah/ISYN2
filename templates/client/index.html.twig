@@ -13,6 +13,7 @@
             <th scope="col">mail</th>
             <th scope="col">tel</th>
             <th scope="col">password</th>
+            <th scope="col"> supprimer </th>
         </tr>
         </thead>
         <tbody>
@@ -24,6 +25,7 @@
             <td>{{ client.getMail() }}</td>
             <td>{{ client.getTel() }}</td>
             <td>{{ client.getPassword() }}</td>
+            <td><a href="{{ path ('delete_client' , {id: client.getId()}) }}" class="btn btn-danger btn-sm">DELELTE</a></td>
         </tr>
         {% endfor %}
     </table>

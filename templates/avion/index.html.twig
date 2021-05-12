@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AvionController!{% endblock %}
+
+{% block body %}
+<h1><center>liste des AVIONS</center> </h1>
+<table class="table table-striped table-hover">
+    <thead>
+    <tr>
+        <th scope="col">nom</th>
+        <th scope="col">nombre de place</th>
+        <th scope="col">hbergemet</th>
+        <th scope="col"> supprimer </th>
+        <th scope="col"> modify </th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for avion in avions %}
+    <tr>
+        <th scope="row">{{ avion.getNom() }}</th>
+        <th scope="row">{{ avion.getNbPlace() }}</th>
+        <th scope="row">{{ avion.getHeberg() }}</th>
+        <th scope="row"><a href="{{ path ('delete_avion' , {id: avion.getId()}) }}" class="btn btn-danger btn-sm"> DELETE </a></th>
+        <th scope="row"><a href="{{ path ('update_avion' , {id: avion.getId()}) }}" class="btn btn-info btn-sm"> MODIFY </a></th>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+    <center><a href="/avion/new" class="btn btn-success"> ajouter avion </a></center>
+{% endblock %}

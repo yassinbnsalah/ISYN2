@@ -45,4 +45,14 @@ class ClientController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+    /**
+     * @Route("/client/supprimer/{id}" , name="delete_client")
+     */
+    public function delete_C ($id, request $request, EntityManagerInterface $manager,ClientRepository $clientRepository)
+    {
+        $client = $clientRepository->find($id) ;
+        $manager->remove($client);
+        $manager->flush();
+        return $this->redirectToRoute("client");
+    }
 }
