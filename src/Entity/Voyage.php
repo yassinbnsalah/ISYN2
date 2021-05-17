@@ -64,6 +64,16 @@ class Voyage
      */
     private $commentaires;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $from_Ville;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $to_Ville;
+
     public function __construct()
     {
         $this->avionVoyages = new ArrayCollection();
@@ -253,6 +263,30 @@ class Voyage
                 $commentaire->setVoy(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getFromVille(): ?string
+    {
+        return $this->from_Ville;
+    }
+
+    public function setFromVille(string $from_Ville): self
+    {
+        $this->from_Ville = $from_Ville;
+
+        return $this;
+    }
+
+    public function getToVille(): ?string
+    {
+        return $this->to_Ville;
+    }
+
+    public function setToVille(string $to_Ville): self
+    {
+        $this->to_Ville = $to_Ville;
 
         return $this;
     }

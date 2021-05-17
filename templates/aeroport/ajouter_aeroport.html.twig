@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SecurityController!{% endblock %}
+
+{% block body %}
+    <h1> traitement aeroport </h1>
+    {{ form_start(form) }}
+    {{ form_row(form.nom,{'attr' :{'class' :'form-control'}})}}
+    {{ form_row(form.ville,{'attr' :{'class' :'form-control'}})}}
+    <button type="submit" class="btn btn-primary"> connect </button>
+    {{ form_end(form) }}
+{% endblock %}

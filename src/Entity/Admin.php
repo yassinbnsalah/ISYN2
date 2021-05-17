@@ -32,6 +32,11 @@ class Admin
      */
     private $Email;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $Connecter;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class Admin
     public function setEmail(string $Email): self
     {
         $this->Email = $Email;
+
+        return $this;
+    }
+
+    public function getConnecter(): ?bool
+    {
+        return $this->Connecter;
+    }
+
+    public function setConnecter(?bool $Connecter): self
+    {
+        $this->Connecter = $Connecter;
 
         return $this;
     }

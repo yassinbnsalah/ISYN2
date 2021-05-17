@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello VoyageController!{% endblock %}
+
+{% block body %}
+<h2> Voyage ID : {{ voyage.getId() }}</h2>
+    <p> from :{{ voyage.getFromVille() }} a l'aeroport {{ voyage.getArDepart().getNom() }}</p>
+    <p>to : {{ voyage.getToVille() }} a l' aeroport {{ voyage.getArArrive().getNom() }}</p>
+    {% if voyage.getArEscale() %}
+        <p> escale dans {{ voyage.getArEscale().getVille() }} a l'aeroport {{ voyage.getArEscale().getNom() }}</p>
+    {% endif %}
+    date aller : {{ voyage.getDateAller()|date("d/m/Y") }}
+    {% if voyage.getDateRetour() %}
+    date retour : {{ voyage.getDateRetour()|date("d/m/Y") }}
+    {% endif %}
+    {% for Av in Avs %}
+        {% if Av.getVoy().getId() == voyage.getId() and Av.getAv() != NULL  %}
+            {% if  Av.getEtat() == 'aller' %}
+                <p class="mb-0"> Avion d'aller : {{ Av.getAv().getNom() }} de {{ Av.getAv().getHeberg() }}</p>
+            {% elseif  Av.getEtat() == 'retour'  %}
+                <p class="mb-0"> Avion de retour : {{ Av.getAv().getNom() }} de {{ Av.getAv().getHeberg() }}</p>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+{% endblock %}

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Admin;
 use App\Form\RegistrationType;
+use App\Repository\AdminRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -34,13 +35,5 @@ class SecurityController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-    /**
-     * @Route("/admin", name="security_login")
-     */
-    public function login(Request $request)
-    {
 
-        //return $this->redirectToRoute('home_admin');
-        return $this->render('security/login.html.twig');
-    }
 }

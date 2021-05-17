@@ -18,7 +18,14 @@ class AvionVoyageRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, AvionVoyage::class);
     }
-
+    public function delete_av($id)
+    {
+        $rep = $this->getEntityManager();
+        $reqq = $rep->createQuery(
+            'DELETE FROM App\Entity\AvionVoyage A WHERE A.voy = :val')
+            ->setParameter('val',$id);
+        $reqq->execute() ;
+    }
     // /**
     //  * @return AvionVoyage[] Returns an array of AvionVoyage objects
     //  */

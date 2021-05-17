@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SecurityController!{% endblock %}
+
+{% block body %}
+    <form action="#" method="post">
+        <div class="mb-3">
+            <label for="from" class="form-label"> from ville : </label>
+            <input type="text" class="form-control" id="from" name="form" placeholder="from ville :">
+        </div>
+        <div class="mb-3">
+            <label for="to" class="form-label"> to ville : </label>
+            <input type="text" class="form-control" id="to" name="to" placeholder="to ville :">
+        </div>
+        <div class="mb-3">
+            <label for="date_depart" class="form-label"> date_depart : </label>
+            <input type="date" class="form-control" id="date_depart" name="date_depart" placeholder="date depart ville :">
+        </div>
+        <div class="mb-3">
+            <label for="date_retour" class="form-label"> date_retour : </label>
+            <input type="date" class="form-control" id="date_retour" name="date_retour" placeholder="date retour ville :">
+        </div>
+        <div class="mb-3">
+            <label for="aller" class="form-label"> aeroport aller : </label>
+            <input type="text" class="form-control" id="aller" name="aero_aller" placeholder="aeroport aller:">
+        </div>
+        <div class="mb-3">
+            <label for="retour" class="form-label"> aeroport retour : </label>
+            <input type="text" class="form-control" id="retour" name="aero_retour" placeholder="aeroport retour:">
+        </div>
+        <div class="mb-3">
+            <label for="escale" class="form-label"> aeroport escale  : </label>
+            <input type="text" class="form-control" id="escale" name="aero_esca" placeholder=" aeroport escale  :">
+        </div>
+        <div class="mb-3">
+            <label for="avion_d'aller" class="form-label"> avion_d'aller : </label>
+            <input type="text" class="form-control" id="avion_d'aller" name="avion_aller" placeholder=" avion_d'aller :">
+        </div>
+        <div class="mb-3">
+            <label for="avion_retour" class="form-label"> avion retour : </label>
+            <input type="text" class="form-control" id="avion_retour" name="avion_retour" placeholder=" avion_retour  :">
+        </div>
+        <button type="submit" class="btn btn-primary"> connect </button>
+    </form>
+
+{% endblock %}

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Avion;
 use App\Form\AvionType;
+use App\Repository\AdminRepository;
 use App\Repository\AvionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,21 +15,28 @@ use Symfony\Component\Routing\Annotation\Route;
 class AvionController extends AbstractController
 {
     /**
-     * @Route("/avion", name="avion")
+     * @Route("/admin/avion", name="avion")
      */
-    public function index(AvionRepository $avionRepository): Response
+    public function index(AvionRepository $avionRepository,AdminRepository $adminRepository): Response
     {
+        $admin =  $admin = $adminRepository->findOneBy([
+            'Connecter'=>1
+        ]);
         $avion = $avionRepository->findAll();
         return $this->render('avion/index.html.twig', [
             'controller_name' => 'AvionController',
-            'avions' => $avion
+            'avions' => $avion,
+            'admin' => $admin
         ]);
     }
     /**
-     * @Route ("/avion/new" , name="new avion" )
+     * @Route ("/admin/avion/new" , name="new_avion" )
      */
-    public function ajouter(Request $request , EntityManagerInterface $manager)
+    public function ajouter(Request $request , EntityManagerInterface $manager,AdminRepository $adminRepository)
     {
+        $admin =  $admin = $adminRepository->findOneBy([
+            'Connecter'=>1
+        ]);
         $avion = new Avion();
         $form = $this->createForm(AvionType::class,$avion) ;
         $form->handleRequest($request);
@@ -40,12 +48,13 @@ class AvionController extends AbstractController
         }
         return $this->render('avion/ajouter_avion.html.twig' ,[
             'controller_name' => 'AvionController',
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'admin' => $admin
         ]);
 
     }
     /**
-     * @Route ("/avion/supprimer/{id}" , name="delete_avion")
+     * @Route ("/admin/avion/supprimer/{id}" , name="delete_avion")
      */
     public function delete_A($id ,AvionRepository $avionRepository, EntityManagerInterface $manager)
     {
@@ -55,10 +64,13 @@ class AvionController extends AbstractController
         return $this->redirectToRoute("avion");
     }
     /**
-     * @Route ("/avion/modifier/{id}" , name="update_avion")
+     * @Route ("/admin/avion/modifier/{id}" , name="update_avion")
      */
-    public function update_A($id , AvionRepository $avionRepository ,Request $request , EntityManagerInterface $manager)
+    public function update_A($id , AvionRepository $avionRepository ,Request $request , EntityManagerInterface $manager,AdminRepository $adminRepository)
     {
+        $admin =  $admin = $adminRepository->findOneBy([
+            'Connecter'=>1
+        ]);
         $avion = $avionRepository->find($id);
         $form = $this->createForm(AvionType::class,$avion) ;
         $form->handleRequest($request);
@@ -70,7 +82,8 @@ class AvionController extends AbstractController
         }
         return $this->render('avion/modifier_avion.html.twig' ,[
             'controller_name' => 'AvionController',
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'admin' => $admin
         ]);
     }
 }

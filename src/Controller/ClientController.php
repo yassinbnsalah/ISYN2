@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Client;
 use App\Form\ClientType;
 use App\Form\RegistrationType;
+use App\Repository\AdminRepository;
 use App\Repository\ClientRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,20 +16,27 @@ use Symfony\Component\Routing\Annotation\Route;
 class ClientController extends AbstractController
 {
     /**
-     * @Route("/client", name="client")
+     * @Route("/admin/client", name="client")
      */
-    public function index(ClientRepository $clientRepository): Response
-    {   $client = $clientRepository->findAll();
+    public function index(ClientRepository $clientRepository,AdminRepository $adminRepository): Response
+    {    $admin =  $admin = $adminRepository->findOneBy([
+        'Connecter'=>1
+    ]);
+        $client = $clientRepository->findAll();
         return $this->render('client/index.html.twig', [
             'controller_name' => 'ClientController',
-            'clients' => $client
+            'clients' => $client,
+            'admin' => $admin
         ]);
     }
     /**
-     * @Route("/Client/ajouter" , name="ajouter_client")
+     * @Route("/admin/Client/ajouter" , name="ajouter_client")
      */
-    public function ajouter(Request $request , EntityManagerInterface $manager)
+    public function ajouter(Request $request , EntityManagerInterface $manager,AdminRepository $adminRepository)
     {
+        $admin =  $admin = $adminRepository->findOneBy([
+            'Connecter'=>1
+        ]);
         $client = new Client();
         $form = $this->createForm(ClientType::class , $client);
 
@@ -42,11 +50,12 @@ class ClientController extends AbstractController
         }
         return $this->render('client/Ajouter_Client.html.twig', [
             'controller_name' => 'ClientController',
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'admin'=> $admin
         ]);
     }
     /**
-     * @Route("/client/supprimer/{id}" , name="delete_client")
+     * @Route("/admin/client/supprimer/{id}" , name="delete_client")
      */
     public function delete_C ($id, request $request, EntityManagerInterface $manager,ClientRepository $clientRepository)
     {
