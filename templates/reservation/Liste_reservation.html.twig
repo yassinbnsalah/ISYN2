@@ -1,34 +1,33 @@
-{% extends 'base.html.twig' %}
+{% extends 'base3.html.twig' %}
 
-{% block title %}Hello ReservationController!{% endblock %}
+{% block title %}Hello VoyageController!{% endblock %}
 
 {% block body %}
-    <h1> no reservation pour le moment </h1>
-     <table class="table table-striped">
+    <table class="table table-striped">
         <tr>
-        <td> nom client
         <td> voyage to </td>
         <td> nombre de personne </td>
         <td> date de votre reservation </td>
         <td> confirmer </td>
         <td> details </td>
         </tr>
-        {% for reservation in res %}
+        {% for reservation in reservations %}
+            {% if reservation.getCl().getId() == client.getId() %}
         <tr>
-            <td> {{ reservation.getCl().getNomPrenom()}}
             <td> {{ reservation.getVoy().getToVille() }}</td>
             <td> {{ reservation.getNbPers() }}</td>
             <td> {{ reservation.getDateRes()|date("d/m/Y")  }}</td>
             <td>
                 {% if reservation.getConfirmer() == 0 %}
-                     n'est pas encore confirmé
+                    votre reservation n'est pas encore confirmé
                 {% else %}
-                     est deja confirmer
+                    votre reservation est deja confirmer
                     {% endif %}
             </td>
-            <td> <a href="{{ path ('detail_reservations_admin' , {id:reservation.getId()}) }}" class="btn btn-info" > details </a></td>
+            <td> <a href="{{ path ('detail_reservation_client' , {id:reservation.getId()}) }}" class="btn btn-info" > details </a></td>
         </tr>
-            
+            {% endif %}
         {% endfor %}
     </table>
+
 {% endblock %}

@@ -29,7 +29,7 @@
           <a class="nav-link " href="/admin/home">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/admin/client">CLIENT</a>
+          <a class="nav-link" href="{{path('admin_client')}}">CLIENT</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/admin/voyage">VOYAGE</a>
@@ -38,11 +38,14 @@
           <a class="nav-link" href="/admin/avion">PLAN</a>
         </li>
        <li class="nav-item">
-          <a class="nav-link" href="#">RESERVATION</a>
+          <a class="nav-link" href="/admin/reservation">RESERVATION</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ path('aeroport') }}">AEROPORT</a>
         </li>
+          <li class="nav-item">
+                  <a class="nav-link" href="/admin/voyage/org">VOYAGE ORGANISER</a>
+          </li>
       </ul>
         <span class="badge bg-primary">{{ admin.getLogin() }}</span>
         <a class="btn btn-secondary my-2 my-sm-0" href="/admin">logout</a>

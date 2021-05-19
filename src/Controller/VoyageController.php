@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use App\Repository\ClientRepository;
 class VoyageController extends AbstractController
 {
     /**
@@ -26,7 +26,7 @@ class VoyageController extends AbstractController
         $admin =  $admin = $adminRepository->findOneBy([
             'Connecter'=>1
         ]);
-        $voyage = $voyageRepository->findAll();
+        $voyage = $voyageRepository->Select_Voy();
         $av = $avionVoyageRepository->findAll();
         return $this->render('voyage/index.html.twig', [
             'controller_name' => 'VoyageController',
@@ -136,4 +136,25 @@ class VoyageController extends AbstractController
             'admin' => $admin
         ]) ;
     }
+        /**
+     * @Route("/admin/voyage/detail/{id}" , name="detail_voyage")
+     */
+    public function detailer($id , VoyageRepository $voyageRepository , AvionVoyageRepository $avionVoyageRepository, ClientRepository $clientRepository)
+    {
+
+        $client = $clientRepository->findOneBy([
+            'Connect' => 1
+        ]);
+        $voyage = $voyageRepository->find($id);
+        $Avs = $avionVoyageRepository->findAll();
+
+        return $this->render('voyage/Details_Voy_c.html.twig',
+        [
+            'controller_name'=>'VoyageController',
+            'voyage' =>$voyage,
+            'Avs'=>$Avs,
+            'client' => $client
+        ]) ;
+    }
+    
 }

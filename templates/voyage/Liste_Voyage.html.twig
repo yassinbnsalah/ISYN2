@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base3.html.twig' %}
 
 {% block title %}Hello VoyageController!{% endblock %}
 
@@ -9,28 +9,21 @@
             <tr>
                 <th scope="col">from</th>
                 <th scope="col">to</th>
-                <th scope="col">date aller</th>
-                <th scope="col">date retour</th>
-                <th scope="col">details</th>
-                <th scope="col">Delete</th>
+                <th scope="col"> date aller</th>
+                <th scope="col"> date retour </th>
+                <th scope="col"> details </th>
             </tr>
             </thead>
             <tbody>
     {% for voyage in voyages %}
-
             <tr>
                 <td>{{ voyage.getFromVille() }}</td>
                 <td>{{ voyage.getToVille() }}</td>
-
-                <td>{{ voyage.getDateAller()|date("d/m/Y") }}</td>
-
-                <td>{{ voyage.getDateRetour()|date("d/m/Y") }}</td>
+                <td> {{ voyage.getDateAller()|date("d/m/Y") }}</td>
+                <td> {{ voyage.getDateRetour()|date("d/m/Y") }}</td>
                 <td><a href="{{ path('detail_voyage' , {id:voyage.getId()}) }}" class="btn btn-outline-success btn-sm"> details </a> </td>
-                <td><a href="{{ path ('delete_voyage' , {id: voyage.getId()})  }}" class="btn btn-outline-danger btn-sm">supprimer</a></td>
             </tr>
-
     {% endfor %}
             </tbody>
         </table>
-    <center><a href="/admin/voyage/new" class="btn btn-primary"> ajouter Voyage </a></center>
-{% endblock %}
+    {% endblock %}

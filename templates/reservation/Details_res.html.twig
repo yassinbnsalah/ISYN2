@@ -1,0 +1,25 @@
+{% extends 'base3.html.twig' %}
+
+{% block title %}Hello VoyageController!{% endblock %}
+
+{% block body %}
+<pre>
+    votre date de reservation {{ reservation.getDateRes()|date("d/m/Y") }}
+    de nom : {{ reservation.getCl().getNomPrenom()}}
+    votre Ville from : {{ reservation.getVoy().getFromVille() }} 
+        a l'aeroport {{ reservation.getVoy().getArDepart().getNom()}}
+    votre Ville destinateur : {{ reservation.getVoy().getToVille() }} 
+        a l'aeroport {{ reservation.getVoy().getArArrive().getNom()}}
+    date de depart : {{ reservation.getVoy().getDateAller()|date("d/m/Y") }}
+    {% if reservation.getVoy().getDateRetour() %}
+    date de retour : {{ reservation.getVoy().getDateRetour()|date("d/m/Y") }}
+    {% endif %}
+    {% if reservation.getConfirmer() %}
+        votre reservation confirmer 
+    {% endif %}
+      {% if reservation.getConfirmer() == 0 %}
+        votre reservation n'est pas encore confirmé 
+    {% endif %}
+        nombre de personne dans cette reservation : {{ reservation.getNbPers()}}
+    </pre>
+{% endblock %}

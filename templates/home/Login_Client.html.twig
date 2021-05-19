@@ -1,0 +1,21 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    {% if message != NULL %}
+    <center> {{ message }} </center>
+    {% endif %}
+<center>Login here</center>
+    <form action="{{ path('login_client') }}" method="post">
+        <div class="mb-5">
+            <label for="mail" class="form-label">email</label>
+            <input type="text" class="form-control" id="mail" name="mail" style="width:300px;" placeholder="email" required>
+        </div>
+        <div class="mb-5">
+            <label for="password" class="form-label">password</label>
+            <input type="password" class="form-control" id="password" name="password" style="width:300px;" placeholder="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary"> connect </button>
+    </form>
+{% endblock %}

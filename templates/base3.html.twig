@@ -18,13 +18,26 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/">ISYN</a>
+        <a class="navbar-brand" href="/client/home">ISYN</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link " href="/client/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/client/reserver/ticket">RESERVE TICKET</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('res_client') }}">YOUR RESERVATION</a>
+                </li>
+            </ul>
+            <span class="badge bg-primary">{{ client.getNomPrenom() }}</span>
+            <a class="btn btn-secondary my-2 my-sm-0" href="/logout">logout</a>
 
-        <a class="btn btn-secondary my-2 my-sm-0" href="/auth">login</a>
         </div>
     </div>
 </nav>

@@ -74,6 +74,16 @@ class Voyage
      */
     private $to_Ville;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $price;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Offres::class, inversedBy="voyage")
+     */
+    private $offres;
+
     public function __construct()
     {
         $this->avionVoyages = new ArrayCollection();
@@ -287,6 +297,30 @@ class Voyage
     public function setToVille(string $to_Ville): self
     {
         $this->to_Ville = $to_Ville;
+
+        return $this;
+    }
+
+    public function getPrice(): ?int
+    {
+        return $this->price;
+    }
+
+    public function setPrice(?int $price): self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    public function getOffres(): ?Offres
+    {
+        return $this->offres;
+    }
+
+    public function setOffres(?Offres $offres): self
+    {
+        $this->offres = $offres;
 
         return $this;
     }

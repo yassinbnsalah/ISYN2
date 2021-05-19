@@ -1,0 +1,38 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    <center> ----------------------OUR HOME PAGE--------------------- </center>
+    <center><img src="https://i.pinimg.com/564x/79/67/09/796709c95739112e67add72aa0a62ccc.jpg" class="img-fluid" alt="..."></center>
+        <br>
+        <br>
+        <br>
+        <p>
+           <center>ISYN Une agence de voyage est une entreprise qui organise et propose des offres de voyages, de vols, d'hôtels et de séjours aux consommateurs..
+    Elle se pose en intermédiaire entre les consommateurs et les différents prestataires sur le marché du tourisme: compagnies aériennes, hôtels, loueurs de voitures.</center>
+        </p>
+    <center> ------------------Découvrez d'autres locations de vacances---------------------</center>
+<div class="container">
+    <div class="row">
+
+            {% for voyage in voyages %}
+                    <div class="col">
+                        <div class="card" style="width: 18rem;">
+                            {% for image in images %}
+                                 {% if image.getVoyageOrg().getId() == voyage.getId() %}
+                                    <img src="{{image.getName()}}" class="card-img-top" alt="...">
+                                 {% endif %}
+                            {% endfor %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ voyage.getVoy().getToVille() }}</h5>
+                                <p class="card-text"> {{ voyage.getNbJour() }} JOURS </p>
+                                <a href="#" class="btn btn-primary">Voir Details</a>
+                            </div>
+                        </div>
+                    </div>
+            {% endfor %}
+    </div>
+</div>
+    <center> <a href="" class="btn btn-info"> voir plus</a></center>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'base3.html.twig' %}
+
+{% block title %}Hello VoyageController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+    <div class="row justify-content-start">
+        <div class="col-6">
+
+            <h3>{{ voyage.getNbJour() }} JOurs a {{ voyage.getVoy().getToVille() }}</h3>
+            <p> from :{{ voyage.getVoy().getFromVille() }} a l'aeroport {{ voyage.getVoy().getArDepart().getNom() }}</p>
+            <p>to : {{ voyage.getVoy().getToVille() }} a l' aeroport {{ voyage.getVoy().getArArrive().getNom() }}</p>
+            {% if voyage.getVoy().getArEscale() %}
+                <p> escale dans {{ voyage.getVoy().getArEscale().getVille() }} a l'aeroport {{ voyage.getVoy().getArEscale().getNom() }}</p>
+            {% endif %}
+            date aller : {{ voyage.getVoy().getDateAller()|date("d/m/Y") }}
+            {% if voyage.getVoy().getDateRetour() %}
+                date retour : {{ voyage.getVoy().getDateRetour()|date("d/m/Y") }}
+            {% endif %}
+            {% for Av in Avs %}
+                {% if Av.getVoy().getId() == voyage.getVoy().getId() and Av.getAv() != NULL  %}
+                    {% if  Av.getEtat() == 'aller' %}
+                        <p class="mb-0"> Avion d'aller : {{ Av.getAv().getNom() }} de {{ Av.getAv().getHeberg() }}</p>
+                    {% elseif  Av.getEtat() == 'retour'  %}
+                        <p class="mb-0"> Avion de retour : {{ Av.getAv().getNom() }} de {{ Av.getAv().getHeberg() }}</p>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            programme de voyage organisée ;
+            {{ voyage.getProgramme() }}
+            <h3> pour faire la reservation :</h3>
+            <center><a href="{{ path('reservation_org' , {id: voyage.getVoy().getId()}) }}" class="btn btn-success"> RESERVER </a></center>
+            {% for commentaire in commentaires %}
+                {% if commentaire.getVoy().getId() == voyage.getVoy().getId() %}
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    {{commentaire.getCl().getNomPrenom()}}
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="row">
+                                        <div class="col-8 col-sm-6">
+                                           {{commentaire.getContenu()}}
+                                        </div>
+                                        <div class="col-4 col-sm-6">
+                                           date de commentaire soon
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                {% endif %}
+            {% endfor %}
+            <form method="post">
+                votre commentaire :
+                <input type="text" placeholder="taper votre commentaire here" name="conetnu" class="form-control">
+                <button type="submit" class="btn btn-primary">ajouter commentaire</button>
+            </form>
+        </div>
+            <div class="col-6">
+                {% for image in images %}
+                    {% if image.getVoyageOrg().getId() == voyage.getId() %}
+                        <img src="{{ image.getName() }}" class="rounded mx-auto d-block" style="width: 300px ; height: 300px;" >
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

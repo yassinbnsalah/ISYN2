@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello VoyageController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+    <div class="row justify-content-start">
+        <div class="col-4">
+            <h2> Voyage ID : {{ voyage.getId() }}</h2>
+            <h3> nombre de jour : {{ voyage.getNbJour() }}</h3>
+            <p> from :{{ voyage.getVoy().getFromVille() }} a l'aeroport {{ voyage.getVoy().getArDepart().getNom() }}</p>
+            <p>to : {{ voyage.getVoy().getToVille() }} a l' aeroport {{ voyage.getVoy().getArArrive().getNom() }}</p>
+            {% if voyage.getVoy().getArEscale() %}
+                <p> escale dans {{ voyage.getVoy().getArEscale().getVille() }} a l'aeroport {{ voyage.getVoy().getArEscale().getNom() }}</p>
+            {% endif %}
+            date aller : {{ voyage.getVoy().getDateAller()|date("d/m/Y") }}
+            {% if voyage.getVoy().getDateRetour() %}
+                date retour : {{ voyage.getVoy().getDateRetour()|date("d/m/Y") }}
+            {% endif %}
+            {% for Av in Avs %}
+                {% if Av.getVoy().getId() == voyage.getVoy().getId() and Av.getAv() != NULL  %}
+                    {% if  Av.getEtat() == 'aller' %}
+                        <p class="mb-0"> Avion d'aller : {{ Av.getAv().getNom() }} de {{ Av.getAv().getHeberg() }}</p>
+                    {% elseif  Av.getEtat() == 'retour'  %}
+                        <p class="mb-0"> Avion de retour : {{ Av.getAv().getNom() }} de {{ Av.getAv().getHeberg() }}</p>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            programme de voyage organisée ;
+            {{ voyage.getProgramme() }}
+        </div>
+        <div class="col-4">
+            {% for image in images %}
+            {% if image.getVoyageOrg().getId() == voyage.getId() %}
+            <img src="{{ image.getName() }}" style="width: 300px ; height: 300px;" >
+            {% endif %}
+            {% endfor %}
+            <a href="{{ path('ajouter_image' , {id: voyage.getId()}) }}" class="btn btn-info"> ajouter une image </a>
+        </div>
+    </div>
+
+
+{% endblock %}

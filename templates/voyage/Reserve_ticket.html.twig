@@ -1,0 +1,28 @@
+{% extends 'base3.html.twig' %}
+
+{% block title %}Hello VoyageController!{% endblock %}
+
+{% block body %}
+
+    reserve your ticket here
+    <form action="#" method="post">
+        <div class="mb-3">
+            <label for="from" class="form-label"> from ville : </label>
+            <input type="text" class="form-control" id="from" name="form" placeholder="from ville :">
+        </div>
+        <div class="mb-3">
+            <label for="to" class="form-label"> to ville : </label>
+            <input type="text" class="form-control" id="to" name="to" placeholder="to ville :">
+        </div>
+        <div class="mb-3">
+            <label for="date_depart" class="form-label"> date_depart : </label>
+            <input type="date" class="form-control" id="date_depart" name="date_depart" placeholder="date depart ville :">
+        </div>
+        <div class="mb-3">
+            <label for="date_retour" class="form-label"> date_retour : </label>
+            <input type="date" class="form-control" id="date_retour" name="date_retour" placeholder="date retour ville :">
+        </div>
+        <button type="submit" class="btn btn-primary"> connect </button>
+    </form>
+
+{% endblock %}

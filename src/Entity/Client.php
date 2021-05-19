@@ -54,6 +54,11 @@ class Client
      */
     private $commentaires;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $Connect;
+
     public function __construct()
     {
         $this->reservations = new ArrayCollection();
@@ -181,6 +186,18 @@ class Client
                 $commentaire->setCl(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getConnect(): ?bool
+    {
+        return $this->Connect;
+    }
+
+    public function setConnect(?bool $Connect): self
+    {
+        $this->Connect = $Connect;
 
         return $this;
     }

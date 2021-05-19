@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Voyage;
+use App\Entity\VoyageOrg;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -19,6 +20,17 @@ class VoyageRepository extends ServiceEntityRepository
         parent::__construct($registry, Voyage::class);
     }
 
+    public function Select_Voy()
+    {
+        $req = $this->getEntityManager();
+        $rep = $req->createQuery(
+            'select V from  App\Entity\Voyage V 
+                 LEFT JOIN App\Entity\VoyageOrg O
+                 With V.id = O.voy
+                 where O.voy IS NULL'
+        );
+        return  $rep->getResult()  ;
+    }
     // /**
     //  * @return Voyage[] Returns an array of Voyage objects
     //  */

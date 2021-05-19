@@ -32,6 +32,16 @@ class Reservation
      */
     private $Voy;
 
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $DateRes;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $confirmer;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +79,30 @@ class Reservation
     public function setVoy(?Voyage $Voy): self
     {
         $this->Voy = $Voy;
+
+        return $this;
+    }
+
+    public function getDateRes(): ?\DateTimeInterface
+    {
+        return $this->DateRes;
+    }
+
+    public function setDateRes(\DateTimeInterface $DateRes): self
+    {
+        $this->DateRes = $DateRes;
+
+        return $this;
+    }
+
+    public function getConfirmer(): ?bool
+    {
+        return $this->confirmer;
+    }
+
+    public function setConfirmer(?bool $confirmer): self
+    {
+        $this->confirmer = $confirmer;
 
         return $this;
     }
